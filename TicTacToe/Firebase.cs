@@ -9,6 +9,9 @@ using FireSharp.Response;
 using FireSharp.Interfaces;
 
 
+using System.Configuration;
+using System.Collections.Specialized;
+
 namespace TicTacToe
 {
     public class Firebase
@@ -16,10 +19,12 @@ namespace TicTacToe
 
         private static IFirebaseClient client = null;
 
-        private static IFirebaseConfig fcon = new FirebaseConfig()
+
+
+        public static IFirebaseConfig fcon = new FirebaseConfig()
         {
-            AuthSecret = "",
-            BasePath = ""
+            AuthSecret = ConfigurationManager.AppSettings.Get("authSecret"),
+            BasePath = ConfigurationManager.AppSettings.Get("basePath")
         };
 
         static private IFirebaseClient setClient()

@@ -22,6 +22,20 @@ namespace TicTacToe
             }
         }
 
+        public bool CheckIfOkay(int inputNum, char[] pos)
+        {
+            if (inputNum < 9 && pos[inputNum] != 'o' && pos[inputNum] != 'x')
+            {
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Invalid input!");
+                return false;
+            }
+        }
+
+
         public char[] Write(char player, int inputNum, char[] pos)
         {
             pos[inputNum] = player;

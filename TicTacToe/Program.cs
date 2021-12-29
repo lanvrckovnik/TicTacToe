@@ -13,6 +13,8 @@ using FireSharp.Config;
 using FireSharp.Response;
 using FireSharp.Interfaces;
 
+using System.Configuration;
+using System.Collections.Specialized;
 
 namespace TicTacToe
 {
@@ -24,7 +26,7 @@ namespace TicTacToe
             Firebase firebase = new Firebase();
             Internal internalProcces = new Internal();
             
-           
+
             char[] pos = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
             string board = ($" {pos[0]} | {pos[1]} | {pos[2]} \n" +
                             "-----------\n" +
@@ -67,9 +69,8 @@ namespace TicTacToe
                     inputNum = internalProcces.Input();
 
                     //CheckIfOkay
-                    CheckIfOkay();
 
-                    if (canContinue)
+                    if (internalProcces.CheckIfOkay(inputNum, pos))
                     {
                         //Write 
                         internalProcces.Write(player, inputNum, pos);
@@ -136,19 +137,6 @@ namespace TicTacToe
                     {
                         Console.WriteLine($"It was a {winner}");
                     }
-                }
-            }
-
-            void CheckIfOkay()
-            {
-                if (inputNum < 9 && pos[inputNum] != 'o' && pos[inputNum] != 'x')
-                {
-
-                }
-                else {
-                    Console.WriteLine("Invalid input!");
-                    canContinue = false; //reset
-                    
                 }
             }
             
